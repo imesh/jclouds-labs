@@ -74,7 +74,7 @@ public class Config {
    @SerializedName("WorkingDir")
    private final String workingDir;
    @SerializedName("Entrypoint")
-   private final String entrypoint;
+   private final List<String> entrypoint;
    @SerializedName("NetworkDisabled")
    private final boolean networkDisabled;
    @SerializedName("OnBuild")
@@ -89,7 +89,7 @@ public class Config {
           Map<String, ?> exposedPorts, boolean tty, boolean openStdin, boolean stdinOnce,
           @Nullable List<String> env, @Nullable List<String> cmd, @Nullable List<String> dns, String imageId,
           Map<String, ?> volumes, @Nullable String volumesFrom, @Nullable String workingDir,
-          @Nullable String entrypoint, @Nullable boolean networkDisabled, @Nullable String onBuild) {
+          @Nullable List<String> entrypoint, @Nullable boolean networkDisabled, @Nullable String onBuild) {
       this.hostname = hostname;
       this.domainName = domainName;
       this.user = user;
@@ -195,7 +195,7 @@ public class Config {
       return workingDir;
    }
 
-   public String getEntrypoint() {
+   public List<String> getEntrypoint() {
       return entrypoint;
    }
 
@@ -304,7 +304,7 @@ public class Config {
       private Map<String, ?> volumes = ImmutableMap.of();
       private String volumesFrom;
       private String workingDir;
-      private String entrypoint;
+      private List<String> entrypoint = ImmutableList.of();
       private boolean networkDisabled;
       private String onBuild;
 
@@ -408,7 +408,7 @@ public class Config {
          return this;
       }
 
-      public Builder entrypoint(String entrypoint) {
+      public Builder entrypoint(List<String> entrypoint) {
          this.entrypoint = entrypoint;
          return this;
       }

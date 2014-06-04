@@ -86,8 +86,10 @@ public class DockerComputeServiceAdapter implements
       }
 
       Config.Builder configBuilder = Config.builder()
-              .imageId(imageId)
-              .cmd(ImmutableList.of("/usr/sbin/sshd", "-D"))
+              .imageId(template.getImage().getName())
+              //.cmd(ImmutableList.of("/usr/sbin/sshd", "-D"))
+              .attachStdout(true)
+              .attachStderr(true)
               .exposedPorts(exposedPorts);
 
       if (templateOptions.getVolumes().isPresent()) {
